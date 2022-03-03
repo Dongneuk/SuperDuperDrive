@@ -24,6 +24,8 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
+
+                    <!-- FILES TAB START HERE! -->
                     <div class="tab-pane fade show active" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
                         <form action="#" enctype="multipart/form-data" method="POST">
                             <div class="container">
@@ -60,6 +62,9 @@
                             </table>
                         </div>
                     </div>
+                    <!-- FILES TAB ENDS HERE! -->
+
+                    <!-- NOTES TAB STARTS HERE! -->
                     <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
                         <button style="margin: 0.25em;" type="button" class="btn btn-info float-right" onclick="showNoteModal()">
                             + Add a New Note
@@ -75,6 +80,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <tr th:each="note:${notes}">
                                     <tr>
                                         <td>
                                             <button type="button" class="btn btn-success">Edit</button>
@@ -97,7 +103,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="#" method="POST">
+                                        <form action="#" th:action="@{/note}" method="POST">
                                             <input type="hidden" name="noteId" id="note-id">
                                             <div class="form-group">
                                                 <label for="note-title" class="col-form-label">Title</label>
@@ -118,13 +124,16 @@
                             </div>
                         </div>
                     </div>
+                    <!-- NOTES TAB ENDS HERE! -->
+
+                    <!-- CREDENTIALS TAB STARTS HERE! -->
                     <div class="tab-pane fade" id="nav-credentials" role="tabpanel" aria-labelledby="nav-credentials-tab">
                         <button style="margin: 0.25em;" type="button" class="btn btn-info float-right" onclick="showCredentialModal()">
                             + Add a New Credential
                         </button>
 
                         <div class="table-responsive">
-                            <table class="table table-striped" th:object="${credentials}" id="credentialTable">
+                            <table class="table table-striped" id="credentialTable">
                                 <thead>
                                     <tr>
                                         <th style="width: 20%" scope="col"></th>
@@ -134,6 +143,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <tr th:each="credential : ${credentials}">
                                 <tr>
                                     <td>
                                         <button type="button" class="btn btn-success">Edit</button>
@@ -157,7 +167,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="#" method="POST">
+                                        <form action="#" th:action="@{/add-credential}" th:object="${newCredential}" method="POST">
                                             <input type="hidden" name="credentialId" id="credential-id">
                                             <div class="form-group">
                                                 <label for="note-title" class="col-form-label">URL</label>
