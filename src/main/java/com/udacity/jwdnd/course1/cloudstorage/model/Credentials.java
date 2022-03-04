@@ -5,10 +5,25 @@ public class Credentials {
     private Integer credentialId;
     private String url;
     private String username;
+    public String key;
     private String password;
     private Integer userId;
 
+    public Credentials() {
+        this.url = "";
+        this.username = "";
+        this.key = "";
+        this.password = "";
+    }
 
+    public Credentials(Integer credentialId, String url, String username, String key, String password, Integer userId) {
+        this.credentialId = credentialId;
+        this.url = url;
+        this.username = username;
+        this.key = key;
+        this.password = password;
+        this.userId = userId;
+    }
 
     public Integer getCredentialId() {
         return credentialId;

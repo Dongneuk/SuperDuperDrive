@@ -9,15 +9,14 @@ public class File {
     private String contentType;
     private String fileSize;
     private Integer userId;
-    private byte[] data;
+    private byte[] fileData;
 
-    public File(Integer fileId, String fileName, String contentType, String fileSize, Integer userId, byte[] data) {
-        this.fileId = fileId;
+    public File(String fileName, String contentType, String fileSize, Integer userId, byte[] fileData) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.fileSize = fileSize;
         this.userId = userId;
-        this.data = data;
+        this.fileData = fileData;
     }
 
     public Integer getFileId() {
@@ -60,11 +59,13 @@ public class File {
         this.userId = userId;
     }
 
-    public byte[] getData() {
-        return data;
+    public byte[] getFileData() {
+        return fileData;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setFileData(byte[] fileData) {
+        this.fileData = fileData;
     }
+
+
 }
