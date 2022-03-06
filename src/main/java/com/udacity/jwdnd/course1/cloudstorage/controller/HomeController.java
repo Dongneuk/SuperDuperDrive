@@ -47,7 +47,6 @@ public class HomeController {
         model.addAttribute("credentials", this.credentialService.getAllCredentials(userId));
         model.addAttribute("newCredential", new Credentials());
         model.addAttribute("newNote", new Note());
-
         return "home";
     }
 
@@ -92,6 +91,24 @@ public class HomeController {
                 .contentType(MediaType.parseMediaType(file.getContentType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
                 .body(new ByteArrayResource(file.getFileData()));
+    }
+
+    @GetMapping("/file-delete/{fileId}")
+    public String deleteFile(@PathVariable Integer fileId, Authentication authentication, Model model) {
+        User user = userService.getUser(authentication.getPrincipal().toString());
+
+        model.addAttribute("successMessage", false);
+        model.addAttribute("errorMessage", false);
+
+        try {
+            fileService.deleteFile(fileId);
+            List<File> files = fileService.getAllFilesFromThisUser(user.getUserId());
+            model.addAttribute("successMessage", "FIle is deleted successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+        return "result";
     }
 }
 

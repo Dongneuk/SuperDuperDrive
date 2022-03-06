@@ -7,6 +7,18 @@ public class Note {
     private String noteDescription;
     private Integer userId;
 
+    public Note() {
+        this.noteTitle = "";
+        this.noteDescription = "";
+    }
+
+
+    public Note(String noteTitle, String noteDescription, Integer userId) {
+        this.noteTitle = noteTitle;
+        this.noteDescription = noteDescription;
+        this.userId = userId;
+    }
+
     public Integer getNoteId() {
         return noteId;
     }
