@@ -7,6 +7,7 @@ import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -20,13 +21,13 @@ public class CredentialController {
         this.credentialService = credentialService;
     }
 
+
     @PostMapping("/add-credential")
-    public String addCredentialOrUpdate(Credentials credentials, Authentication authentication, Model model) {
+    public String addNewCredentialOrUpdate(Credentials credentials, Authentication authentication, Model model) {
         User user = userService.getUser(authentication.getPrincipal().toString());
         credentials.setUserId(user.getUserId());
 
-        credentialService.addCredentials(credentials);
-        model.addAttribute("successMessage", "The credential added Successfully");
-        return "result";
+
     }
+
 }
