@@ -22,12 +22,13 @@ public class CredentialController {
     }
 
 
-    @PostMapping("/add-credential")
-    public String addNewCredentialOrUpdate(Credentials credentials, Authentication authentication, Model model) {
-        User user = userService.getUser(authentication.getPrincipal().toString());
-        credentials.setUserId(user.getUserId());
-
-
-    }
-
+//    @PostMapping("/add-credential")
+//    public String addNewCredentialOrUpdate(Credentials credentials, Authentication authentication, Model model) {
+//        User user = userService.getUser(authentication.getPrincipal().toString());
+//        credentials.setUserId(user.getUserId());
+//
+//        credentialService.addCredentials(credentials);
+//        model.addAttribute("successMessage", "The credenttial added.");
+//        return "result";
+//    }
 }
